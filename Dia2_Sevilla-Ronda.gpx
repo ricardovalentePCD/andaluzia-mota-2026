@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="RoteireMota-Andaluzia-2026"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Dia2_Sevilla-Ronda</name>
+    <desc>Dia 2 | 2 Out | Sevilha → El Chorro → Pueblos Blancos → Ronda (~260 km)</desc>
+  </metadata>
+  <rte>
+    <name>Dia2_Sevilla-Ronda</name>
+    <desc>Dia 2 | 2 Out | Sevilha → El Chorro → Pueblos Blancos → Ronda (~260 km)</desc>
+    <rtept lat="37.3891" lon="-5.9845">
+      <name>Sevilla - Partida</name>
+      <desc></desc>
+    </rtept>
+    <rtept lat="37.0183" lon="-4.5625">
+      <name>Antequera</name>
+      <desc>Dólmens UNESCO + El Torcal</desc>
+    </rtept>
+    <rtept lat="36.9097" lon="-4.7472">
+      <name>El Chorro - Caminito Rey</name>
+      <desc>PARAGEM OBRIGATÓRIA: desfiladeiro espetacular</desc>
+    </rtept>
+    <rtept lat="36.8833" lon="-4.8533">
+      <name>Ardales</name>
+      <desc></desc>
+    </rtept>
+    <rtept lat="37.0478" lon="-4.8594">
+      <name>Campillos</name>
+      <desc></desc>
+    </rtept>
+    <rtept lat="36.9333" lon="-5.2625">
+      <name>Olvera - Pueblo Blanco</name>
+      <desc>Castelo árabe sobre rocha branca. Foto incrível</desc>
+    </rtept>
+    <rtept lat="36.8606" lon="-5.181">
+      <name>Setenil de las Bodegas</name>
+      <desc>Casas sob a rocha. Um dos lugares mais únicos da Andaluzia</desc>
+    </rtept>
+    <rtept lat="36.7462" lon="-5.1621">
+      <name>Ronda - Chegada</name>
+      <desc>Pernoita Ronda. Puente Nuevo ao pôr do sol</desc>
+    </rtept>
+  </rte>
+</gpx>

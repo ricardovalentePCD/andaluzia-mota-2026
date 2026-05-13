@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andaluzia de Mota · 5 Dias · Out 2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--dark:#111;--card:#161616;--card2:#1c1c1c;--border:#252525;--orange:#e85c1a;--orange-l:#ff7a3a;--white:#f0ede8;--grey:#777;--d1:#e85c1a;--d2:#c0392b;--d3:#16a085;--d4:#8e44ad;--d5:#2980b9}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d2f?w=1600&q=85') center/cover no-repeat;filter:brightness(0.35) saturate(1.2)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.8) 0%,rgba(232,92,26,.08) 50%,rgba(10,10,10,.7) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,92,26,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(232,92,26,.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:900px}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.8rem,12vw,9rem);font-weight:900;line-height:.88;letter-spacing:-.02em;text-transform:uppercase}
+.hero-title .hl{color:var(--orange)}
+.hero-sub{font-size:1rem;color:rgba(240,237,232,.55);margin-top:22px;letter-spacing:.07em}
+.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:50px;flex-wrap:wrap}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:2.6rem;font-weight:700;color:var(--orange);line-height:1}
+.stat-lbl{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-top:3px}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;opacity:.4;animation:bob 2s infinite;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ── SECTIONS ── */
+.wrap{max-width:1200px;margin:0 auto;padding:80px 24px}
+.s-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.s-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;text-transform:uppercase;line-height:1;margin-bottom:44px}
+
+/* ── OVERVIEW ── */
+.overview-row{display:grid;grid-template-columns:60px 1fr auto auto;gap:20px;align-items:center;padding:18px 24px;background:var(--card);border-left:3px solid transparent;margin-bottom:2px;text-decoration:none;color:inherit;transition:background .15s}
+.overview-row:hover{background:#1e1e1e}
+.overview-row.d1{border-color:var(--d1)}.overview-row.d2{border-color:var(--d2)}.overview-row.d3{border-color:var(--d3)}.overview-row.d4{border-color:var(--d4)}.overview-row.d5{border-color:var(--d5)}
+.ov-num{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:700;opacity:.35}
+.ov-route{font-size:.92rem;font-weight:500}
+.ov-route small{display:block;font-size:.72rem;color:var(--grey);font-weight:300;margin-top:2px}
+.ov-km{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:600;white-space:nowrap}
+.ov-km small{opacity:.45;font-size:.9rem}
+.ov-stay{font-size:.7rem;color:var(--grey);text-align:right;white-space:nowrap}
+.route-note{background:rgba(232,92,26,.07);border-left:3px solid var(--orange);padding:16px 20px;font-size:.83rem;margin-top:28px;line-height:1.6}
+.route-note strong{color:var(--orange-l)}
+
+/* ── MAP ── */
+.map-section{background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#map-main{height:500px;width:100%;filter:saturate(.8) brightness(.9)}
+.map-legend{display:flex;gap:18px;flex-wrap:wrap;padding:16px 24px;max-width:1200px;margin:0 auto}
+.leg-item{display:flex;align-items:center;gap:7px;font-size:.75rem}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* ── DAY CARDS ── */
+.day-card{background:var(--card);border:1px solid var(--border);margin-bottom:2px}
+.day-header{display:flex;align-items:center;gap:20px;padding:24px 28px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.day-header:hover{background:rgba(255,255,255,.02)}
+.day-num{font-family:'Barlow Condensed',sans-serif;font-size:3.5rem;font-weight:900;line-height:1;opacity:.12;min-width:56px}
+.day-info{flex:1}
+.day-date{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;opacity:.4;margin-bottom:5px}
+.day-title{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:700;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
+.day-sub{font-size:.8rem;color:var(--grey);margin-top:5px}
+.day-badge{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.badge-km{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:700;line-height:1}
+.badge-km small{font-size:.85rem;opacity:.45}
+.badge-sleep{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;background:var(--border);padding:3px 9px;border-radius:2px}
+.day-body{padding:0 28px 28px}
+
+/* MINI MAP */
+.mini-map-wrap{margin:20px 0 24px;border:1px solid var(--border);overflow:hidden;border-radius:2px}
+.mini-map{height:200px;width:100%;filter:saturate(.75) brightness(.85)}
+
+/* TWO COL LAYOUT */
+.day-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:680px){.day-cols{grid-template-columns:1fr}}
+
+/* WAYPOINTS */
+.wp-list{list-style:none}
+.wp-list li{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:.84rem}
+.wp-list li:last-child{border-bottom:none}
+.wp-dot{width:7px;height:7px;border-radius:50%;background:var(--grey);margin-top:5px;flex-shrink:0}
+.wp-dot.hot{background:var(--orange)}
+.wp-n{font-weight:500}
+.wp-d{font-size:.74rem;color:var(--grey);margin-top:1px}
+
+/* HIGHLIGHTS BOX */
+.hi-box{background:rgba(232,92,26,.05);border:1px solid rgba(232,92,26,.18);border-radius:3px;padding:18px}
+.hi-box h4{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.hi-item{display:flex;gap:10px;margin-bottom:14px;font-size:.82rem}
+.hi-item:last-child{margin-bottom:0}
+.hi-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+.hi-txt strong{display:block;font-weight:500;margin-bottom:1px}
+.hi-txt span{color:var(--grey);font-size:.75rem;line-height:1.4}
+.hi-photo{margin-top:7px;border-radius:2px;overflow:hidden;position:relative}
+.hi-photo img{width:100%;height:120px;object-fit:cover;display:block;transition:opacity .3s}
+.hi-photo a{position:absolute;inset:0;display:flex;align-items:flex-end;padding:8px;background:linear-gradient(transparent 50%,rgba(0,0,0,.7));font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;opacity:0;transition:opacity .2s}
+.hi-photo:hover a{opacity:1}
+.hi-photo:hover img{opacity:.8}
+
+/* HOTELS BOX */
+.hotel-box{margin-top:18px}
+.hotel-box h4{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
+.hotel-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card2);border:1px solid var(--border);margin-bottom:4px;text-decoration:none;color:var(--white);font-size:.8rem;transition:border-color .15s}
+.hotel-item:hover{border-color:var(--orange)}
+.hotel-price{color:var(--orange);font-weight:500;font-size:.82rem;white-space:nowrap;margin-left:12px}
+.hotel-stars{font-size:.65rem;color:var(--grey);margin-top:1px}
+.hotel-link-icon{color:var(--grey);font-size:.7rem;margin-left:8px;opacity:.6}
+
+/* RESTAURANTS BOX */
+.resto-box{margin-top:18px}
+.resto-box h4{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
+.resto-grid{display:grid;gap:6px}
+.resto-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--card2);border:1px solid var(--border);text-decoration:none;color:var(--white);font-size:.8rem;transition:border-color .15s;position:relative}
+.resto-item:hover{border-color:rgba(232,92,26,.5)}
+.resto-tier{font-size:1rem;flex-shrink:0;margin-top:1px}
+.resto-info strong{display:block;font-weight:500;font-size:.83rem}
+.resto-info span{color:var(--grey);font-size:.73rem}
+.resto-price-badge{position:absolute;top:10px;right:10px;font-size:.65rem;background:var(--border);padding:2px 7px;border-radius:10px;color:var(--grey)}
+.resto-links{display:flex;gap:6px;margin-top:5px}
+.resto-link{font-size:.63rem;letter-spacing:.05em;background:var(--border);padding:2px 7px;border-radius:2px;color:var(--grey);text-decoration:none;transition:color .15s,background .15s}
+.resto-link:hover{color:var(--white);background:var(--orange)}
+
+/* GPX SECTION */
+.gpx-section{background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.gpx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.gpx-card{background:var(--card);border:1px solid var(--border);padding:18px;text-decoration:none;color:var(--white);display:flex;flex-direction:column;gap:6px;transition:border-color .15s,background .15s}
+.gpx-card:hover{border-color:var(--orange);background:#1a1a1a}
+.gpx-icon{font-size:1.4rem}
+.gpx-name{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.gpx-meta{font-size:.72rem;color:var(--grey)}
+.gpx-file{font-size:.67rem;font-family:monospace;color:var(--orange);opacity:.7;margin-top:auto;padding-top:8px}
+.garmin-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:28px}
+.g-step{background:var(--card);border:1px solid var(--border);padding:20px}
+.g-num{font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:900;color:var(--orange);opacity:.25;line-height:1;margin-bottom:10px}
+.g-txt{font-size:.82rem;line-height:1.5}
+.g-txt strong{color:var(--white)}
+.g-txt code{background:var(--border);padding:1px 5px;border-radius:2px;font-size:.78rem;color:var(--orange)}
+
+/* CHECKLIST */
+.check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px}
+.check-item{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--card);border:1px solid var(--border);font-size:.83rem;cursor:pointer;transition:background .12s;user-select:none}
+.check-item:hover{background:#1a1a1a}
+.check-box{width:16px;height:16px;border:1.5px solid var(--border);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .12s}
+.check-item.done .check-box{background:var(--orange);border-color:var(--orange)}
+.check-item.done .check-box::after{content:'✓';color:#fff;font-size:.65rem;font-weight:700}
+.check-item.done .check-txt{opacity:.35;text-decoration:line-through}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:36px 24px;text-align:center}
+footer .logo{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+footer p{font-size:.75rem;color:var(--grey)}
+
+/* UTILITY */
+.divider{width:36px;height:3px;background:var(--orange);margin:0 0 28px}
+a.ext-link{color:var(--orange-l);text-decoration:none;font-size:.75rem}
+a.ext-link:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">🏍 Outubro 2026 · 5 Dias · Adventure/Trail</div>
+    <h1 class="hero-title">
+      Andaluzia<br>
+      <span class="hl">de Mota</span>
+    </h1>
+    <p class="hero-sub">Queijas &nbsp;→&nbsp; Sevilha &nbsp;→&nbsp; Ronda &nbsp;→&nbsp; Granada &nbsp;→&nbsp; Queijas</p>
+    <div class="hero-stats">
+      <div><div class="stat-num">~1450</div><div class="stat-lbl">Km Total</div></div>
+      <div><div class="stat-num">5</div><div class="stat-lbl">Dias</div></div>
+      <div><div class="stat-num">4</div><div class="stat-lbl">Cidades</div></div>
+      <div><div class="stat-num">0</div><div class="stat-lbl">Portagens*</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>scroll</span>
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<div class="wrap">
+  <div class="s-lbl">Visão Geral</div>
+  <h2 class="s-title">Roteiro Completo</h2>
+  <div>
+    <a href="#day1" class="overview-row d1"><div class="ov-num">01</div><div class="ov-route">Queijas → Sierra Morena → Sevilha<small>N2 Alentejo · Serpa · Sierra de Aracena · N-433</small></div><div class="ov-km">~330 <small>km</small></div><div class="ov-stay">🌙 Sevilha</div></a>
+    <a href="#day2" class="overview-row d2"><div class="ov-num">02</div><div class="ov-route">Sevilha → El Chorro → Pueblos Blancos → Ronda<small>El Chorro · Olvera · Setenil · Ronda</small></div><div class="ov-km">~260 <small>km</small></div><div class="ov-stay">🌙 Ronda</div></a>
+    <a href="#day3" class="overview-row d3"><div class="ov-num">03</div><div class="ov-route">Ronda → A-397 → Costa del Sol → Alpujarras → Granada<small>Serranía de Ronda · Marbella · Nerja · Trevélez</small></div><div class="ov-km">~290 <small>km</small></div><div class="ov-stay">🌙 Granada</div></a>
+    <a href="#day4" class="overview-row d4"><div class="ov-num">04</div><div class="ov-route">Granada → Ruta del Califato → Grazalema → Sevilha<small>N-432 · Priego de Córdoba · El Torcal · Grazalema</small></div><div class="ov-km">~340 <small>km</small></div><div class="ov-stay">🌙 Sevilha</div></a>
+    <a href="#day5" class="overview-row d5"><div class="ov-num">05</div><div class="ov-route">Sevilha → Algarve → N2 Alentejo → Queijas<small>Huelva · Tavira · Portimão · N2</small></div><div class="ov-km">~360 <small>km</small></div><div class="ov-stay">🏠 Casa</div></a>
+  </div>
+  <div class="route-note"><strong>Portagens:</strong> Apenas a Ponte 25 de Abril em Lisboa (~€1,55). Em Portugal: IC1 + N2 (livres). Em Espanha: todas as estradas são gratuitas. No Garmin XT2 ativa <em>evitar portagens</em> + <em>evitar autoestradas</em>.</div>
+</div>
+
+<!-- MAIN MAP -->
+<div class="map-section">
+  <div id="map-main"></div>
+  <div class="map-legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#e85c1a"></div>Dia 1 — Sierra Morena</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#c0392b"></div>Dia 2 — El Chorro / Ronda</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#16a085"></div>Dia 3 — A-397 / Alpujarras</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#8e44ad"></div>Dia 4 — Ruta del Califato</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#2980b9"></div>Dia 5 — Algarve / N2</div>
+  </div>
+</div>
+
+<!-- DAYS -->
+<div class="wrap">
+  <div class="s-lbl">Itinerário Detalhado</div>
+  <h2 class="s-title">Dia a Dia</h2>
+
+  <!-- ─── DIA 1 ─── -->
+  <div class="day-card" id="day1">
+    <div class="day-header">
+      <div class="day-num">01</div>
+      <div class="day-info">
+        <div class="day-date">Quarta · 1 de Outubro · 2026</div>
+        <div class="day-title">Queijas → Sierra Morena → Sevilha</div>
+        <div class="day-sub">N2 · Serpa · Sierra de Aracena · N-433</div>
+      </div>
+      <div class="day-badge">
+        <div class="badge-km">~330 <small>km</small></div>
+        <div class="badge-sleep">🌙 Sevilha</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mini-map-wrap"><div class="mini-map" id="mm1"></div></div>
+      <div class="day-cols">
+        <div>
+          <ul class="wp-list">
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Queijas</div><div class="wp-d">Partida · Ponte 25 de Abril (€1,55)</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Setúbal</div><div class="wp-d">IC1 — livre de portagem</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Alcácer do Sal</div><div class="wp-d">Castelo e rio Sado</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Beja</div><div class="wp-d">Almoço · Centro romano</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Serpa</div><div class="wp-d">Vila murada — paragem obrigatória</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Rosal de la Frontera</div><div class="wp-d">Fronteira PT/ES</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Aracena · Sierra Morena</div><div class="wp-d">N-433 · Sobreiros · Castelo templário</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Sevilha</div><div class="wp-d">Chegada · 2 noites (Dia 1 + 4)</div></div></li>
+          </ul>
+          <!-- Hotels -->
+          <div class="hotel-box">
+            <h4>🛏 Alojamento Sevilha (2 noites)</h4>
+            <a href="https://www.booking.com/hotel/es/alminar.pt-pt.html" target="_blank" class="hotel-item"><div><div>Hotel Alminar</div><div class="hotel-stars">★★★★ · Junto à Catedral</div></div><span class="hotel-price">~€90 <span class="hotel-link-icon">↗</span></span></a>
+            <a href="https://www.booking.com/hotel/es/corregidor.pt-pt.html" target="_blank" class="hotel-item"><div><div>Hotel Corregidor</div><div class="hotel-stars">★★★ · Barrio Santa Cruz</div></div><span class="hotel-price">~€65 <span class="hotel-link-icon">↗</span></span></a>
+            <a href="https://www.booking.com/hotel/es/seventy-seville.pt-pt.html" target="_blank" class="hotel-item"><div><div>Seventy Hotel Sevilla</div><div class="hotel-stars">★★★★ · Design · Parque Maria Luisa</div></div><span class="hotel-price">~€110 <span class="hotel-link-icon">↗</span></span></a>
+          </div>
+        </div>
+        <div>
+          <div class="hi-box">
+            <h4>⚡ Destaques</h4>
+            <div class="hi-item">
+              <div class="hi-icon">🏰</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Serpa,+Portugal" target="_blank" style="color:inherit;text-decoration:none">Serpa →</a></strong>
+                <span>Vila murada séc. XIII, azeite e enchidos. A melhor paragem do Alentejo</span>
+                <div class="hi-photo" id="ph-serpa">
+                  <img src="" alt="Serpa" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Serpa,+Portugal" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🌿</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Aracena,+Spain" target="_blank" style="color:inherit;text-decoration:none">Sierra de Aracena →</a></strong>
+                <span>N-433: sobreiros, curvas abertas e silêncio absoluto. Coração da Sierra Morena</span>
+                <div class="hi-photo" id="ph-aracena">
+                  <img src="" alt="Aracena" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Aracena,+Spain" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🐷</div>
+              <div class="hi-txt">
+                <strong>Jamón Ibérico</strong>
+                <span>Aracena é a capital mundial do presunto ibérico de bolota — obrigatório provar</span>
+              </div>
+            </div>
+          </div>
+          <!-- Restaurants -->
+          <div class="resto-box">
+            <h4>🍽️ Restaurantes em Sevilha</h4>
+            <div class="resto-grid">
+              <a href="https://www.tripadvisor.com/Restaurant_Review-g187443-d786843-Reviews-Bar_Eslava-Seville.html" target="_blank" class="resto-item">
+                <div class="resto-tier">🍺</div>
+                <div class="resto-info"><strong>Bar Eslava</strong><span>O melhor bar de tapas de Sevilha · Rúa Eslava</span><div class="resto-links"><span class="resto-link">TripAdvisor</span></div></div>
+                <div class="resto-price-badge">€10–20 / pp</div>
+              </a>
+              <a href="https://www.thefork.pt/restaurante/abades-triana-r547693" target="_blank" class="resto-item">
+                <div class="resto-tier">🍽️</div>
+                <div class="resto-info"><strong>Abades Triana</strong><span>Vista para o rio Guadalquivir · Cozinha andaluza</span><div class="resto-links"><span class="resto-link">TheFork</span></div></div>
+                <div class="resto-price-badge">€30–45 / pp</div>
+              </a>
+              <a href="https://www.abantalrestaurante.es" target="_blank" class="resto-item">
+                <div class="resto-tier">🥂</div>
+                <div class="resto-info"><strong>Abantal ★ Michelin</strong><span>1 estrela Michelin · Alta cozinha andaluza</span><div class="resto-links"><span class="resto-link">Website</span></div></div>
+                <div class="resto-price-badge">€80–100 / pp</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DIA 2 ─── -->
+  <div class="day-card" id="day2">
+    <div class="day-header">
+      <div class="day-num">02</div>
+      <div class="day-info">
+        <div class="day-date">Quinta · 2 de Outubro · 2026</div>
+        <div class="day-title">Sevilha → El Chorro → Pueblos Blancos → Ronda</div>
+        <div class="day-sub">El Chorro · Olvera · Setenil de las Bodegas · Ronda</div>
+      </div>
+      <div class="day-badge">
+        <div class="badge-km">~260 <small>km</small></div>
+        <div class="badge-sleep">🌙 Ronda</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mini-map-wrap"><div class="mini-map" id="mm2"></div></div>
+      <div class="day-cols">
+        <div>
+          <ul class="wp-list">
+            <li><div class="wp-dot"></div><div><div class="wp-n">Sevilha</div><div class="wp-d">Partida</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Antequera</div><div class="wp-d">Dólmens UNESCO + El Torcal</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">El Chorro · Caminito del Rey</div><div class="wp-d">Desfiladeiro épico — PARAGEM OBRIGATÓRIA</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Ardales</div><div class="wp-d"></div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Campillos</div><div class="wp-d">Entrada Pueblos Blancos</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Olvera</div><div class="wp-d">Castelo árabe sobre rocha branca</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Setenil de las Bodegas</div><div class="wp-d">Casas escavadas sob a rocha — único no mundo</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Ronda 🌅</div><div class="wp-d">Puente Nuevo ao pôr do sol</div></div></li>
+          </ul>
+          <div class="hotel-box">
+            <h4>🛏 Alojamento Ronda</h4>
+            <a href="https://www.parador.es/en/paradores/parador-de-ronda" target="_blank" class="hotel-item"><div><div>Parador de Ronda</div><div class="hotel-stars">★★★★ · Vista para o desfiladeiro</div></div><span class="hotel-price">~€130 <span class="hotel-link-icon">↗</span></span></a>
+            <a href="https://www.booking.com/hotel/es/catalonia-ronda.pt-pt.html" target="_blank" class="hotel-item"><div><div>Hotel Catalonia Ronda</div><div class="hotel-stars">★★★★ · Centro histórico</div></div><span class="hotel-price">~€90 <span class="hotel-link-icon">↗</span></span></a>
+            <a href="https://www.booking.com/hotel/es/don-miguel-ronda.pt-pt.html" target="_blank" class="hotel-item"><div><div>Hotel Don Miguel</div><div class="hotel-stars">★★★ · Vista para a garganta</div></div><span class="hotel-price">~€65 <span class="hotel-link-icon">↗</span></span></a>
+          </div>
+        </div>
+        <div>
+          <div class="hi-box">
+            <h4>⚡ Destaques</h4>
+            <div class="hi-item">
+              <div class="hi-icon">🏞️</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/El+Chorro,+Ardales,+Spain" target="_blank" style="color:inherit;text-decoration:none">El Chorro →</a></strong>
+                <span>Desfiladeiro de 400m. Estradas circundantes oferecem vistas épicas de mota</span>
+                <div class="hi-photo" id="ph-elchorro">
+                  <img src="" alt="El Chorro" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Caminito+del+Rey" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🪨</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Setenil+de+las+Bodegas" target="_blank" style="color:inherit;text-decoration:none">Setenil de las Bodegas →</a></strong>
+                <span>Casas debaixo de rochas rochosas. Um dos lugares mais únicos da Andaluzia</span>
+                <div class="hi-photo" id="ph-setenil">
+                  <img src="" alt="Setenil" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Setenil+de+las+Bodegas" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🌉</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Puente+Nuevo,+Ronda" target="_blank" style="color:inherit;text-decoration:none">Ronda · Puente Nuevo →</a></strong>
+                <span>Cidade sobre abismo de 100m. Visitar ao fim do dia com luz dourada</span>
+                <div class="hi-photo" id="ph-ronda">
+                  <img src="" alt="Ronda" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Puente+Nuevo,+Ronda" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="resto-box">
+            <h4>🍽️ Restaurantes em Ronda</h4>
+            <div class="resto-grid">
+              <a href="https://www.tripadvisor.com/Restaurant_Review-g187441-d1022561-Reviews-Bar_Almocabar-Ronda.html" target="_blank" class="resto-item">
+                <div class="resto-tier">🍺</div>
+                <div class="resto-info"><strong>Bar Almocábar</strong><span>Junto às muralhas árabes · Tapas tradicionais</span><div class="resto-links"><span class="resto-link">TripAdvisor</span></div></div>
+                <div class="resto-price-badge">€12–18 / pp</div>
+              </a>
+              <a href="https://www.thefork.pt/restaurante/tragatapas-r535700" target="_blank" class="resto-item">
+                <div class="resto-tier">🍽️</div>
+                <div class="resto-info"><strong>Tragatapas</strong><span>Tapas criativas · Ingredientes locais</span><div class="resto-links"><span class="resto-link">TheFork</span></div></div>
+                <div class="resto-price-badge">€25–40 / pp</div>
+              </a>
+              <a href="https://www.restaurantebardal.com" target="_blank" class="resto-item">
+                <div class="resto-tier">🥂</div>
+                <div class="resto-info"><strong>Bardal ★★ Michelin</strong><span>2 estrelas Michelin · O melhor de Ronda</span><div class="resto-links"><span class="resto-link">Website</span></div></div>
+                <div class="resto-price-badge">€90+ / pp</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DIA 3 ─── -->
+  <div class="day-card" id="day3">
+    <div class="day-header">
+      <div class="day-num">03</div>
+      <div class="day-info">
+        <div class="day-date">Sexta · 3 de Outubro · 2026</div>
+        <div class="day-title">Ronda → A-397 → Costa del Sol → Alpujarras → Granada</div>
+        <div class="day-sub">Serranía de Ronda · Marbella · Frigiliana · Nerja · Trevélez · Alpujarras</div>
+      </div>
+      <div class="day-badge">
+        <div class="badge-km">~290 <small>km</small></div>
+        <div class="badge-sleep">🌙 Granada</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mini-map-wrap"><div class="mini-map" id="mm3"></div></div>
+      <div class="day-cols">
+        <div>
+          <ul class="wp-list">
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Ronda → A-397</div><div class="wp-d">A MELHOR saída — Serranía de Ronda</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Puerto Las Palomas</div><div class="wp-d">Curvas rápidas · Vista para dois mares</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Marbella</div><div class="wp-d">Costa del Sol · Breve paragem</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Málaga</div><div class="wp-d">Opcional: catedral + museu Picasso</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Frigiliana</div><div class="wp-d">Pueblo Blanco 5 min de Nerja</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Nerja · Balcón de Europa</div><div class="wp-d">Falésia sobre o Mediterrâneo</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Motril · Almuñécar</div><div class="wp-d">Costa Tropical subtropical</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Alpujarras (A346)</div><div class="wp-d">Desfiladeiro do Rio Guadalfeo</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Trevélez · 1476m</div><div class="wp-d">Aldeia mais alta de Espanha</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Granada 🏰</div><div class="wp-d">Alhambra à tarde — reservar!</div></div></li>
+          </ul>
+          <div class="hotel-box">
+            <h4>🛏 Alojamento Granada</h4>
+            <a href="https://www.booking.com/hotel/es/macia-real-de-la-alhambra.pt-pt.html" target="_blank" class="hotel-item"><div><div>Hotel Macía Real de la Alhambra</div><div class="hotel-stars">★★★★ · Perto da Alhambra</div></div><span class="hotel-price">~€90 <span class="hotel-link-icon">↗</span></span></a>
+            <a href="https://www.booking.com/hotel/es/casa1800granada.pt-pt.html" target="_blank" class="hotel-item"><div><div>Hotel Casa 1800</div><div class="hotel-stars">★★★★ · Palacete séc. XVII · Albaicín</div></div><span class="hotel-price">~€140 <span class="hotel-link-icon">↗</span></span></a>
+            <a href="https://www.parador.es/en/paradores/parador-de-granada" target="_blank" class="hotel-item"><div><div>Parador de Granada</div><div class="hotel-stars">★★★★★ · Dentro da Alhambra!</div></div><span class="hotel-price">~€200 <span class="hotel-link-icon">↗</span></span></a>
+          </div>
+        </div>
+        <div>
+          <div class="hi-box">
+            <h4>⚡ Destaques</h4>
+            <div class="hi-item">
+              <div class="hi-icon">🏍️</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/A-397,+Ronda" target="_blank" style="color:inherit;text-decoration:none">A-397 · Serranía de Ronda →</a></strong>
+                <span>Uma das melhores estradas de mota do Sul de Espanha. Curvas rápidas, vista para o Mediterrâneo</span>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🌊</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Nerja,+Spain" target="_blank" style="color:inherit;text-decoration:none">Nerja · Balcón de Europa →</a></strong>
+                <span>Falésia sobre mar turquesa. Paragem obrigatória para foto</span>
+                <div class="hi-photo" id="ph-nerja">
+                  <img src="" alt="Nerja" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Balcon+de+Europa,+Nerja" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🏔️</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Trev%C3%A9lez,+Spain" target="_blank" style="color:inherit;text-decoration:none">Alpujarras · Trevélez →</a></strong>
+                <span>A346 acompanha o Desfiladeiro do Guadalfeo. Aldeias bérberes, socalcos, 1476m altitude</span>
+                <div class="hi-photo" id="ph-alpujarras">
+                  <img src="" alt="Alpujarras" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Las+Alpujarras" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🏰</div>
+              <div class="hi-txt">
+                <strong><a href="https://tickets.alhambra-patronato.es" target="_blank" style="color:inherit;text-decoration:none">Alhambra — Reservar →</a></strong>
+                <span>Reservar bilhetes ANTES da viagem em tickets.alhambra-patronato.es — esgotam rápido!</span>
+                <div class="hi-photo" id="ph-alhambra">
+                  <img src="" alt="Alhambra" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Alhambra,+Granada" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="resto-box">
+            <h4>🍽️ Restaurantes em Granada</h4>
+            <div class="resto-grid">
+              <a href="https://www.tripadvisor.com/Restaurant_Review-g187441-d4372291-Reviews-Bar_Los_Diamantes-Granada.html" target="_blank" class="resto-item">
+                <div class="resto-tier">🍺</div>
+                <div class="resto-info"><strong>Bar Los Diamantes</strong><span>Tapas GRÁTIS com bebida! Tradição de Granada</span><div class="resto-links"><span class="resto-link">TripAdvisor</span></div></div>
+                <div class="resto-price-badge">€8–12 / pp</div>
+              </a>
+              <a href="https://www.tripadvisor.com/Restaurant_Review-g187441-d793001-Reviews-Mirador_de_Morayma-Granada.html" target="_blank" class="resto-item">
+                <div class="resto-tier">🍽️</div>
+                <div class="resto-info"><strong>Mirador de Morayma</strong><span>Vista para a Alhambra · Cozinha andaluza</span><div class="resto-links"><span class="resto-link">TripAdvisor</span></div></div>
+                <div class="resto-price-badge">€30–45 / pp</div>
+              </a>
+              <a href="https://www.rutadelveleta.es" target="_blank" class="resto-item">
+                <div class="resto-tier">🥂</div>
+                <div class="resto-info"><strong>Ruta del Veleta</strong><span>Melhor restaurante de Granada · Sierra Nevada</span><div class="resto-links"><span class="resto-link">Website</span></div></div>
+                <div class="resto-price-badge">€60–80 / pp</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DIA 4 ─── -->
+  <div class="day-card" id="day4">
+    <div class="day-header">
+      <div class="day-num">04</div>
+      <div class="day-info">
+        <div class="day-date">Sábado · 4 de Outubro · 2026</div>
+        <div class="day-title">Granada → Ruta del Califato → Grazalema → Sevilha</div>
+        <div class="day-sub">N-432 · Priego de Córdoba · El Torcal · Zahara · Grazalema · Arcos</div>
+      </div>
+      <div class="day-badge">
+        <div class="badge-km">~340 <small>km</small></div>
+        <div class="badge-sleep">🌙 Sevilha</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mini-map-wrap"><div class="mini-map" id="mm4"></div></div>
+      <div class="day-cols">
+        <div>
+          <ul class="wp-list">
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Granada → N-432</div><div class="wp-d">Início da Ruta del Califato</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Alcalá la Real</div><div class="wp-d">Fortaleza da Mota — vista panorâmica</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Priego de Córdoba</div><div class="wp-d">Almoço · "Florença da Andaluzia"</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Lucena → Estepa</div><div class="wp-d"></div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">El Torcal de Antequera</div><div class="wp-d">Formações rochosas karst únicas</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Zahara de la Sierra</div><div class="wp-d">Pueblo Blanco com lago turquesa</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Grazalema</div><div class="wp-d">MELHOR TROÇO — curvas rápidas e panorâmicas</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Arcos de la Frontera</div><div class="wp-d">Pueblo Blanco sobre falésia</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Sevilha 🥂</div><div class="wp-d">Tapas em Triana · Última noite</div></div></li>
+          </ul>
+          <div class="hotel-box">
+            <h4>🛏 Alojamento Sevilha (2ª noite)</h4>
+            <a href="#" class="hotel-item" onclick="return false"><div><div>Mesmo hotel do Dia 1 ✓</div><div class="hotel-stars">Já reservado — sem check-in extra</div></div><span class="hotel-price">já pago</span></a>
+          </div>
+        </div>
+        <div>
+          <div class="hi-box">
+            <h4>⚡ Destaques</h4>
+            <div class="hi-item">
+              <div class="hi-icon">🕌</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/N-432,+Spain" target="_blank" style="color:inherit;text-decoration:none">Ruta del Califato N-432 →</a></strong>
+                <span>A estrada histórica de Granada a Córdoba. Olivais infinitos e paisagem califal</span>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">💎</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Zahara+de+la+Sierra" target="_blank" style="color:inherit;text-decoration:none">Zahara de la Sierra →</a></strong>
+                <span>Pueblo Blanco com lago azul-turquesa. Uma das melhores vistas da viagem</span>
+                <div class="hi-photo" id="ph-zahara">
+                  <img src="" alt="Zahara de la Sierra" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Zahara+de+la+Sierra" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🏍️</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Grazalema" target="_blank" style="color:inherit;text-decoration:none">Grazalema · Melhor Troço →</a></strong>
+                <span>Parque Natural Sierra de Grazalema: curvas amplas, piso perfeito, zero trânsito</span>
+                <div class="hi-photo" id="ph-grazalema">
+                  <img src="" alt="Grazalema" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Grazalema,+Spain" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🏛️</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Arcos+de+la+Frontera" target="_blank" style="color:inherit;text-decoration:none">Arcos de la Frontera →</a></strong>
+                <span>Pueblo Blanco sobre falésia vertical. Almoço com vista para a planície</span>
+                <div class="hi-photo" id="ph-arcos">
+                  <img src="" alt="Arcos de la Frontera" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Arcos+de+la+Frontera" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="resto-box">
+            <h4>🍽️ Restaurantes em Sevilha (2ª noite)</h4>
+            <div class="resto-grid">
+              <a href="https://www.tripadvisor.com/Restaurant_Review-g187443-d796521" target="_blank" class="resto-item">
+                <div class="resto-tier">🍺</div>
+                <div class="resto-info"><strong>El Rinconcillo</strong><span>Mais antigo bar de Sevilha · Desde 1670</span><div class="resto-links"><span class="resto-link">TripAdvisor</span></div></div>
+                <div class="resto-price-badge">€10–20 / pp</div>
+              </a>
+              <a href="https://www.tripadvisor.com/Restaurant_Review-g187443-d1004024" target="_blank" class="resto-item">
+                <div class="resto-tier">🍽️</div>
+                <div class="resto-info"><strong>La Pepona</strong><span>Tapas criativas no bairro de Triana</span><div class="resto-links"><span class="resto-link">TripAdvisor</span></div></div>
+                <div class="resto-price-badge">€25–35 / pp</div>
+              </a>
+              <a href="https://www.tripadvisor.com/Restaurant_Review-g187443-d10588631" target="_blank" class="resto-item">
+                <div class="resto-tier">🥂</div>
+                <div class="resto-info"><strong>Az-Zait</strong><span>Alta cozinha andaluza · Ambiente elegante</span><div class="resto-links"><span class="resto-link">TripAdvisor</span></div></div>
+                <div class="resto-price-badge">€50–70 / pp</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DIA 5 ─── -->
+  <div class="day-card" id="day5">
+    <div class="day-header">
+      <div class="day-num">05</div>
+      <div class="day-info">
+        <div class="day-date">Domingo · 5 de Outubro · 2026</div>
+        <div class="day-title">Sevilha → Algarve → N2 Alentejo → Queijas</div>
+        <div class="day-sub">Huelva · Vila Real · Tavira · Faro · Portimão · N2 · Casa</div>
+      </div>
+      <div class="day-badge">
+        <div class="badge-km">~360 <small>km</small></div>
+        <div class="badge-sleep">🏠 Casa</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mini-map-wrap"><div class="mini-map" id="mm5"></div></div>
+      <div class="day-cols">
+        <div>
+          <ul class="wp-list">
+            <li><div class="wp-dot"></div><div><div class="wp-n">Sevilha → N-431</div><div class="wp-d">Última manhã na Andaluzia</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Huelva</div><div class="wp-d">N-431 — estrada livre</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Ayamonte → Vila Real Sto. António</div><div class="wp-d">Fronteira ES/PT · Ponte Internacional</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Tavira</div><div class="wp-d">Algarve histórico · Pausa café</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Faro · N125</div><div class="wp-d">Algarve interior — evitar A22</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Portimão</div><div class="wp-d">Almoço recomendado</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">São Brás de Alportel → N2</div><div class="wp-d">Início da N2 — a mais famosa de Portugal</div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Almodôvar → Ourique</div><div class="wp-d">Montado alentejano · Sobreiros · Silêncio</div></div></li>
+            <li><div class="wp-dot"></div><div><div class="wp-n">Santiago do Cacém → Setúbal</div><div class="wp-d"></div></div></li>
+            <li><div class="wp-dot hot"></div><div><div class="wp-n">Queijas 🏠</div><div class="wp-d">~1450 km percorridos · Missão cumprida!</div></div></li>
+          </ul>
+        </div>
+        <div>
+          <div class="hi-box">
+            <h4>⚡ Destaques</h4>
+            <div class="hi-item">
+              <div class="hi-icon">🇵🇹</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/Tavira,+Portugal" target="_blank" style="color:inherit;text-decoration:none">Tavira → Algarve histórico</a></strong>
+                <span>Algarve mais autêntico — sem massas turísticas. Pausa café no centro</span>
+                <div class="hi-photo" id="ph-tavira">
+                  <img src="" alt="Tavira" loading="lazy">
+                  <a href="https://www.google.com/maps/place/Tavira" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+            <div class="hi-item">
+              <div class="hi-icon">🌿</div>
+              <div class="hi-txt">
+                <strong><a href="https://www.google.com/maps/place/N2,+Portugal" target="_blank" style="color:inherit;text-decoration:none">N2 — A Estrada Mais Famosa →</a></strong>
+                <span>De São Brás a Setúbal: montado, azinheiras, silêncio total. O final perfeito da viagem</span>
+                <div class="hi-photo" id="ph-n2">
+                  <img src="" alt="N2 Portugal" loading="lazy">
+                  <a href="https://www.google.com/maps/place/N2+Portugal" target="_blank">Ver no Google Maps</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="resto-box">
+            <h4>🍽️ Restaurantes em Portimão/Algarve</h4>
+            <div class="resto-grid">
+              <a href="https://www.tripadvisor.com/Restaurant_Review-g230119-d1152756" target="_blank" class="resto-item">
+                <div class="resto-tier">🍺</div>
+                <div class="resto-info"><strong>Marisqueira Três Irmãos</strong><span>Marisco fresco · Preço justo · Portimão</span><div class="resto-links"><span class="resto-link">TripAdvisor</span></div></div>
+                <div class="resto-price-badge">€15–25 / pp</div>
+              </a>
+              <a href="https://www.tripadvisor.com/Restaurant_Review-g230119-d1220344" target="_blank" class="resto-item">
+                <div class="resto-tier">🍽️</div>
+                <div class="resto-info"><strong>Restaurante Portimão</strong><span>Cataplana de marisco · Vista para o rio</span><div class="resto-links"><span class="resto-link">TripAdvisor</span></div></div>
+                <div class="resto-price-badge">€30–40 / pp</div>
+              </a>
+              <a href="https://www.thefork.pt/restaurante/vila-joya-r501210" target="_blank" class="resto-item">
+                <div class="resto-tier">🥂</div>
+                <div class="resto-info"><strong>Vila Joya ★★ Michelin</strong><span>2 estrelas Michelin · Albufeira</span><div class="resto-links"><span class="resto-link">TheFork</span></div></div>
+                <div class="resto-price-badge">€120+ / pp</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GPX -->
+<div class="gpx-section">
+  <div class="wrap">
+    <div class="s-lbl">Garmin Zumo XT2</div>
+    <h2 class="s-title">Ficheiros GPX</h2>
+    <div class="gpx-grid">
+      <a href="Dia1_Queijas-Sevilla.gpx" download class="gpx-card"><div class="gpx-icon">📍</div><div class="gpx-name">Dia 1</div><div class="gpx-meta">Queijas → Sierra Morena → Sevilha</div><div class="gpx-meta">~330 km · 9 pts</div><div class="gpx-file">Dia1_Queijas-Sevilla.gpx</div></a>
+      <a href="Dia2_Sevilla-Ronda.gpx" download class="gpx-card"><div class="gpx-icon">📍</div><div class="gpx-name">Dia 2</div><div class="gpx-meta">Sevilha → El Chorro → Ronda</div><div class="gpx-meta">~260 km · 8 pts</div><div class="gpx-file">Dia2_Sevilla-Ronda.gpx</div></a>
+      <a href="Dia3_Ronda-Granada.gpx" download class="gpx-card"><div class="gpx-icon">📍</div><div class="gpx-name">Dia 3</div><div class="gpx-meta">Ronda → A-397 → Alpujarras → Granada</div><div class="gpx-meta">~290 km · 13 pts</div><div class="gpx-file">Dia3_Ronda-Granada.gpx</div></a>
+      <a href="Dia4_Granada-Sevilla.gpx" download class="gpx-card"><div class="gpx-icon">📍</div><div class="gpx-name">Dia 4</div><div class="gpx-meta">Granada → Ruta Califato → Grazalema</div><div class="gpx-meta">~340 km · 10 pts</div><div class="gpx-file">Dia4_Granada-Sevilla.gpx</div></a>
+      <a href="Dia5_Sevilla-Queijas.gpx" download class="gpx-card"><div class="gpx-icon">📍</div><div class="gpx-name">Dia 5</div><div class="gpx-meta">Sevilha → Algarve → N2 → Queijas</div><div class="gpx-meta">~360 km · 13 pts</div><div class="gpx-file">Dia5_Sevilla-Queijas.gpx</div></a>
+    </div>
+    <div class="garmin-steps">
+      <div class="g-step"><div class="g-num">01</div><div class="g-txt"><strong>Liga o Garmin</strong> ao PC via USB e abre a pasta do dispositivo</div></div>
+      <div class="g-step"><div class="g-num">02</div><div class="g-txt">Copia os <code>.gpx</code> para <code>Garmin/GPX/</code></div></div>
+      <div class="g-step"><div class="g-num">03</div><div class="g-txt"><strong>Menu → Percursos → Importar</strong> e seleciona cada ficheiro</div></div>
+      <div class="g-step"><div class="g-num">04</div><div class="g-txt">Ativa <strong>evitar portagens</strong> + <strong>evitar autoestradas</strong> nas definições</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="wrap">
+  <div class="s-lbl">Preparação</div>
+  <h2 class="s-title">Checklist</h2>
+  <div class="check-grid">
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Reservar Sevilha × 2 noites (Dia 1 e Dia 4)</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Reservar Ronda × 1 noite (Dia 2)</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Reservar Granada × 1 noite (Dia 3)</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Reservar Alhambra (antecipação obrigatória)</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Carregar os 5 GPX no Garmin XT2</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Ativar "evitar portagens" no Garmin</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Seguro de viagem + seguro mota Europa</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Equipamento chuva (Grazalema = mais chuvosa ES)</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Camadas térmicas (Sierra Nevada pode estar fria)</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Verificar previsão meteorológica</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Documentos: carta condução + seguro mota</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-txt">Carregador portátil + suporte telemóvel</div></div>
+  </div>
+</div>
+
+<footer>
+  <div class="logo">🏍 Andaluzia de Mota · Outubro 2026</div>
+  <p>Queijas → Sevilha → Ronda → Granada → Sevilha → Queijas &nbsp;·&nbsp; ~1450 km</p>
+  <p style="margin-top:6px">GPX para Garmin Zumo XT2 · 5 dias · Adventure/Trail</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ── ROUTE DATA ──────────────────────────────────────────────
+const C = {
+  d1: { color:'#e85c1a', coords:[[38.7123,-9.2553],[38.5244,-8.8978],[38.3717,-8.5125],[38.0151,-7.8639],[37.9444,-7.5988],[37.9872,-7.2126],[37.8906,-6.5487],[37.8347,-6.3148],[37.3891,-5.9845]] },
+  d2: { color:'#c0392b', coords:[[37.3891,-5.9845],[37.0183,-4.5625],[36.9097,-4.7472],[36.8833,-4.8533],[37.0478,-4.8594],[36.9333,-5.2625],[36.8606,-5.1810],[36.7462,-5.1621]] },
+  d3: { color:'#16a085', coords:[[36.7462,-5.1621],[36.5957,-5.0194],[36.4945,-4.9980],[36.5101,-4.8824],[36.7213,-4.4214],[36.7889,-3.9064],[36.7440,-3.8741],[36.7327,-3.6913],[36.7519,-3.5183],[36.9258,-3.4867],[36.9990,-3.2623],[36.8991,-3.4331],[37.1773,-3.5986]] },
+  d4: { color:'#8e44ad', coords:[[37.1773,-3.5986],[37.4609,-3.9248],[37.4378,-4.1955],[37.4089,-4.4860],[37.2943,-4.8778],[36.9611,-4.5547],[36.8408,-5.3968],[36.7611,-5.3683],[36.7479,-5.8043],[37.3891,-5.9845]] },
+  d5: { color:'#2980b9', coords:[[37.3891,-5.9845],[37.2614,-6.9447],[37.2119,-7.4054],[37.1952,-7.4136],[37.1266,-7.6496],[37.0194,-7.9322],[37.1363,-8.5376],[37.1534,-7.8884],[37.5115,-8.0619],[37.6534,-8.2230],[38.0154,-8.6962],[38.5244,-8.8978],[38.7123,-9.2553]] }
+};
+
+// ── MAIN MAP ─────────────────────────────────────────────────
+const mainMap = L.map('map-main',{zoomControl:true,attributionControl:false}).setView([37.5,-5.5],6);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(mainMap);
+Object.values(C).forEach(d=>{
+  L.polyline(d.coords,{color:d.color,weight:3.5,opacity:.85,smoothFactor:1.5}).addTo(mainMap);
+  [d.coords[0],d.coords[d.coords.length-1]].forEach(c=>L.circleMarker(c,{radius:5,color:d.color,fillColor:d.color,fillOpacity:1,weight:2}).addTo(mainMap));
+});
+L.circleMarker([38.7123,-9.2553],{radius:8,color:'#fff',fillColor:'#e85c1a',fillOpacity:1,weight:2}).bindPopup('<b>🏠 Queijas</b>').addTo(mainMap);
+
+// ── MINI MAPS ─────────────────────────────────────────────────
+function initMiniMap(elId, dayKey) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const d = C[dayKey];
+  const m = L.map(elId,{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,attributionControl:false});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(m);
+  const poly = L.polyline(d.coords,{color:d.color,weight:3,opacity:.9}).addTo(m);
+  L.circleMarker(d.coords[0],{radius:6,color:'#fff',fillColor:d.color,fillOpacity:1,weight:1.5}).addTo(m);
+  L.circleMarker(d.coords[d.coords.length-1],{radius:6,color:'#fff',fillColor:d.color,fillOpacity:1,weight:1.5}).addTo(m);
+  m.fitBounds(poly.getBounds().pad(.15));
+}
+['d1','d2','d3','d4','d5'].forEach((k,i)=>initMiniMap('mm'+(i+1),k));
+
+// ── WIKIPEDIA PHOTOS ─────────────────────────────────────────
+const wikiPhotos = {
+  'ph-serpa':    'Serpa',
+  'ph-aracena':  'Aracena,_Spain',
+  'ph-elchorro': 'Caminito_del_Rey',
+  'ph-setenil':  'Setenil_de_las_Bodegas',
+  'ph-ronda':    'Ronda',
+  'ph-nerja':    'Nerja',
+  'ph-alpujarras': 'Las_Alpujarras',
+  'ph-alhambra': 'Alhambra',
+  'ph-zahara':   'Zahara_de_la_Sierra',
+  'ph-grazalema':'Grazalema',
+  'ph-arcos':    'Arcos_de_la_Frontera',
+  'ph-tavira':   'Tavira',
+  'ph-n2':       'Estrada_Nacional_2_(Portugal)'
+};
+
+async function loadWikiPhoto(divId, wikiTitle) {
+  const div = document.getElementById(divId);
+  if (!div) return;
+  const img = div.querySelector('img');
+  if (!img) return;
+  try {
+    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`);
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data.thumbnail && data.thumbnail.source) {
+      const src = data.thumbnail.source.replace(/\/\d+px-/, '/480px-');
+      img.src = src;
+      img.onerror = () => { div.style.display='none'; };
+      div.style.display = 'block';
+    } else {
+      div.style.display = 'none';
+    }
+  } catch(e) { div.style.display = 'none'; }
+}
+
+// Load photos after page loads
+document.addEventListener('DOMContentLoaded', () => {
+  Object.entries(wikiPhotos).forEach(([id, title]) => {
+    setTimeout(() => loadWikiPhoto(id, title), 100);
+  });
+  loadChecks();
+});
+
+// ── CHECKLIST ─────────────────────────────────────────────────
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  try {
+    const s = [...document.querySelectorAll('.check-item')].map(e=>e.classList.contains('done'));
+    localStorage.setItem('mota_checks', JSON.stringify(s));
+  } catch(e) {}
+}
+function loadChecks() {
+  try {
+    const s = JSON.parse(localStorage.getItem('mota_checks')||'[]');
+    document.querySelectorAll('.check-item').forEach((el,i)=>{if(s[i]) el.classList.add('done');});
+  } catch(e) {}
+}
+</script>
+</body>
+</html>

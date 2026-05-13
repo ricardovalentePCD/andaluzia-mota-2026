@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="RoteireMota-Andaluzia-2026"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Dia1_Queijas-Sevilla</name>
+    <desc>Dia 1 | 1 Out | Queijas → Sierra Morena → Sevilha (~330 km)</desc>
+  </metadata>
+  <rte>
+    <name>Dia1_Queijas-Sevilla</name>
+    <desc>Dia 1 | 1 Out | Queijas → Sierra Morena → Sevilha (~330 km)</desc>
+    <rtept lat="38.7123" lon="-9.2553">
+      <name>Queijas - Partida</name>
+      <desc>Ponto de partida. Ponte 25 de Abril ~1.55€</desc>
+    </rtept>
+    <rtept lat="38.5244" lon="-8.8978">
+      <name>Setubal</name>
+      <desc>Via IC1 (livre). Opcional: ferry de Cacilhas</desc>
+    </rtept>
+    <rtept lat="38.3717" lon="-8.5125">
+      <name>Alcacer do Sal</name>
+      <desc>Castelo e rio Sado. Paragem rápida</desc>
+    </rtept>
+    <rtept lat="38.0151" lon="-7.8639">
+      <name>Beja</name>
+      <desc>Almoço recomendado. Centro histórico romano</desc>
+    </rtept>
+    <rtept lat="37.9444" lon="-7.5988">
+      <name>Serpa</name>
+      <desc>Vila murada belíssima. Paragem obrigatória</desc>
+    </rtept>
+    <rtept lat="37.9872" lon="-7.2126">
+      <name>Rosal de la Frontera</name>
+      <desc>Fronteira PT/ES</desc>
+    </rtept>
+    <rtept lat="37.8906" lon="-6.5487">
+      <name>Aracena - Sierra Morena</name>
+      <desc>N-433: estradas abertas na Serra de Aracena</desc>
+    </rtept>
+    <rtept lat="37.8347" lon="-6.3148">
+      <name>Zufre - Sierra Norte</name>
+      <desc>Parque Natural Sierra Norte de Sevilla</desc>
+    </rtept>
+    <rtept lat="37.3891" lon="-5.9845">
+      <name>Sevilla - Chegada</name>
+      <desc>Alojamento Sevilha (2 noites: Dia 1 e Dia 4)</desc>
+    </rtept>
+  </rte>
+</gpx>
