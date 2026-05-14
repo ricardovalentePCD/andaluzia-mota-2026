@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Ferias-SUL-ESPANHA-2026" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Dia 2 | 2 Out 2026 | Sevilha → Gibraltar → Ronda → Antequera</name><desc>Dia 2 | 2 Out 2026 | Sevilha → Gibraltar → Ronda → Antequera</desc></metadata>
+  <wpt lat="37.38185" lon="-6.06826"><name>Sevilha - Partida</name></wpt>
+  <wpt lat="36.13391" lon="-5.35397"><name>Gibraltar</name></wpt>
+  <wpt lat="36.7463" lon="-5.16119"><name>Ronda</name></wpt>
+  <wpt lat="36.83949" lon="-5.39199"><name>Zahara de la Sierra</name></wpt>
+  <wpt lat="36.86243" lon="-5.17645"><name>Setenil de las Bodegas</name></wpt>
+  <wpt lat="36.92561" lon="-4.8012"><name>El Chorro, Ardales</name></wpt>
+  <wpt lat="37.02" lon="-4.55937"><name>Antequera</name></wpt>
+  <trk>
+    <name>Dia 2 | 2 Out 2026 | Sevilha → Gibraltar → Ronda → Antequera</name>
+    <trkseg>
+      <trkpt lat="37.38185" lon="-6.06826"/>
+      <trkpt lat="37.38526" lon="-6.03423"/>
+      <trkpt lat="37.37186" lon="-6.01602"/>
+      <trkpt lat="37.35341" lon="-5.95975"/>
+      <trkpt lat="37.32986" lon="-5.90597"/>
+      <trkpt lat="37.23379" lon="-5.82528"/>
+      <trkpt lat="37.19827" lon="-5.79731"/>
+      <trkpt lat="37.16224" lon="-5.76285"/>
+      <trkpt lat="37.12661" lon="-5.70345"/>
+      <trkpt lat="37.08642" lon="-5.65119"/>
+      <trkpt lat="37.05335" lon="-5.62092"/>
+      <trkpt lat="36.99611" lon="-5.59151"/>
+      <trkpt lat="36.93721" lon="-5.57461"/>
+      <trkpt lat="36.90348" lon="-5.55775"/>
+      <trkpt lat="36.85329" lon="-5.64364"/>
+      <trkpt lat="36.84058" lon="-5.71141"/>
+      <trkpt lat="36.81538" lon="-5.74921"/>
+      <trkpt lat="36.78706" lon="-5.79959"/>
+      <trkpt lat="36.76246" lon="-5.85581"/>
+      <trkpt lat="36.72121" lon="-5.92056"/>
+      <trkpt lat="36.70628" lon="-5.87936"/>
+      <trkpt lat="36.68213" lon="-5.85341"/>
+      <trkpt lat="36.61646" lon="-5.82618"/>
+      <trkpt lat="36.62328" lon="-5.79329"/>
+      <trkpt lat="36.62875" lon="-5.76027"/>
+      <trkpt lat="36.63743" lon="-5.70181"/>
+      <trkpt lat="36.63799" lon="-5.67529"/>
+      <trkpt lat="36.63291" lon="-5.66131"/>
+      <trkpt lat="36.63471" lon="-5.64171"/>
+      <trkpt lat="36.62354" lon="-5.62114"/>
+      <trkpt lat="36.61307" lon="-5.59284"/>
+      <trkpt lat="36.59236" lon="-5.60225"/>
+      <trkpt lat="36.57489" lon="-5.60509"/>
+      <trkpt lat="36.56358" lon="-5.61242"/>
+      <trkpt lat="36.55756" lon="-5.6259"/>
+      <trkpt lat="36.54944" lon="-5.63699"/>
+      <trkpt lat="36.54088" lon="-5.64087"/>
+      <trkpt lat="36.53215" lon="-5.65066"/>
+      <trkpt lat="36.52026" lon="-5.65022"/>
+      <trkpt lat="36.51439" lon="-5.66186"/>
+      <trkpt lat="36.50968" lon="-5.67352"/>
+      <trkpt lat="36.50413" lon="-5.68513"/>
+      <trkpt lat="36.495" lon="-5.69235"/>
+      <trkpt lat="36.4759" lon="-5.70099"/>
+      <trkpt lat="36.46589" lon="-5.71609"/>
+      <trkpt lat="36.46288" lon="-5.71696"/>
+      <trkpt lat="36.45786" lon="-5.72448"/>
+      <trkpt lat="36.44747" lon="-5.72092"/>
+      <trkpt lat="36.43283" lon="-5.71185"/>
+      <trkpt lat="36.39495" lon="-5.65373"/>
+      <trkpt lat="36.33999" lon="-5.61838"/>
+      <trkpt lat="36.26448" lon="-5.58384"/>
+      <trkpt lat="36.2339" lon="-5.57696"/>
+      <trkpt lat="36.20786" lon="-5.53896"/>
+      <trkpt lat="36.17347" lon="-5.48546"/>
+      <trkpt lat="36.19398" lon="-5.43"/>
+      <trkpt lat="36.20786" lon="-5.43"/>
+      <trkpt lat="36.23226" lon="-5.39"/>
+      <trkpt lat="36.25" lon="-5.35"/>
+      <trkpt lat="36.26" lon="-5.32"/>
+      <trkpt lat="36.26448" lon="-5.28"/>
+      <trkpt lat="36.28" lon="-5.22"/>
+      <trkpt lat="36.31" lon="-5.16"/>
+      <trkpt lat="36.34" lon="-5.12"/>
+      <trkpt lat="36.38" lon="-5.08"/>
+      <trkpt lat="36.42" lon="-5.05"/>
+      <trkpt lat="36.47" lon="-5.03"/>
+      <trkpt lat="36.55085" lon="-5.02957"/>
+      <trkpt lat="36.55666" lon="-5.04394"/>
+      <trkpt lat="36.56313" lon="-5.05953"/>
+      <trkpt lat="36.57552" lon="-5.05976"/>
+      <trkpt lat="36.58442" lon="-5.07039"/>
+      <trkpt lat="36.59689" lon="-5.06961"/>
+      <trkpt lat="36.60809" lon="-5.07317"/>
+      <trkpt lat="36.61857" lon="-5.06225"/>
+      <trkpt lat="36.62413" lon="-5.06509"/>
+      <trkpt lat="36.62669" lon="-5.07578"/>
+      <trkpt lat="36.62423" lon="-5.09062"/>
+      <trkpt lat="36.63459" lon="-5.09018"/>
+      <trkpt lat="36.64897" lon="-5.09132"/>
+      <trkpt lat="36.66493" lon="-5.10664"/>
+      <trkpt lat="36.67978" lon="-5.11706"/>
+      <trkpt lat="36.70138" lon="-5.11925"/>
+      <trkpt lat="36.71389" lon="-5.13483"/>
+      <trkpt lat="36.73568" lon="-5.14782"/>
+      <trkpt lat="36.75464" lon="-5.14963"/>
+      <trkpt lat="36.74623" lon="-5.16139"/>
+      <trkpt lat="36.75361" lon="-5.14885"/>
+      <trkpt lat="36.79138" lon="-5.1077"/>
+      <trkpt lat="36.83271" lon="-5.06846"/>
+      <trkpt lat="36.86506" lon="-5.05259"/>
+      <trkpt lat="36.89812" lon="-4.99987"/>
+      <trkpt lat="36.92285" lon="-4.97493"/>
+      <trkpt lat="36.93247" lon="-4.92526"/>
+      <trkpt lat="36.94849" lon="-4.90011"/>
+      <trkpt lat="36.93901" lon="-4.86639"/>
+      <trkpt lat="36.96233" lon="-4.85594"/>
+      <trkpt lat="37.02139" lon="-4.85135"/>
+      <trkpt lat="37.04976" lon="-4.81843"/>
+      <trkpt lat="37.06029" lon="-4.7268"/>
+      <trkpt lat="37.05233" lon="-4.6586"/>
+      <trkpt lat="37.04923" lon="-4.58742"/>
+      <trkpt lat="37.02341" lon="-4.5698"/>
+      <trkpt lat="37.02017" lon="-4.55886"/>
+    </trkseg>
+  </trk>
+</gpx>

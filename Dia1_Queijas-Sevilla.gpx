@@ -1,50 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="RoteireMota-Andaluzia-2026"
-  xmlns="http://www.topografix.com/GPX/1/1"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
-  <metadata>
-    <name>Dia1_Queijas-Sevilla</name>
-    <desc>Dia 1 | 1 Out | Queijas → Sierra Morena → Sevilha (~330 km)</desc>
-  </metadata>
-  <rte>
-    <name>Dia1_Queijas-Sevilla</name>
-    <desc>Dia 1 | 1 Out | Queijas → Sierra Morena → Sevilha (~330 km)</desc>
-    <rtept lat="38.7123" lon="-9.2553">
-      <name>Queijas - Partida</name>
-      <desc>Ponto de partida. Ponte 25 de Abril ~1.55€</desc>
-    </rtept>
-    <rtept lat="38.5244" lon="-8.8978">
-      <name>Setubal</name>
-      <desc>Via IC1 (livre). Opcional: ferry de Cacilhas</desc>
-    </rtept>
-    <rtept lat="38.3717" lon="-8.5125">
-      <name>Alcacer do Sal</name>
-      <desc>Castelo e rio Sado. Paragem rápida</desc>
-    </rtept>
-    <rtept lat="38.0151" lon="-7.8639">
-      <name>Beja</name>
-      <desc>Almoço recomendado. Centro histórico romano</desc>
-    </rtept>
-    <rtept lat="37.9444" lon="-7.5988">
-      <name>Serpa</name>
-      <desc>Vila murada belíssima. Paragem obrigatória</desc>
-    </rtept>
-    <rtept lat="37.9872" lon="-7.2126">
-      <name>Rosal de la Frontera</name>
-      <desc>Fronteira PT/ES</desc>
-    </rtept>
-    <rtept lat="37.8906" lon="-6.5487">
-      <name>Aracena - Sierra Morena</name>
-      <desc>N-433: estradas abertas na Serra de Aracena</desc>
-    </rtept>
-    <rtept lat="37.8347" lon="-6.3148">
-      <name>Zufre - Sierra Norte</name>
-      <desc>Parque Natural Sierra Norte de Sevilla</desc>
-    </rtept>
-    <rtept lat="37.3891" lon="-5.9845">
-      <name>Sevilla - Chegada</name>
-      <desc>Alojamento Sevilha (2 noites: Dia 1 e Dia 4)</desc>
-    </rtept>
-  </rte>
+<gpx version="1.1" creator="Ferias-SUL-ESPANHA-2026" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Dia 1 | 1 Out 2026 | Queijas → Évora → Jabugo → Sevilha</name><desc>Dia 1 | 1 Out 2026 | Queijas → Évora → Jabugo → Sevilha</desc></metadata>
+  <wpt lat="38.71589" lon="-9.26348"><name>Queijas - Partida</name></wpt>
+  <wpt lat="38.55899" lon="-7.89518"><name>Évora - N254</name></wpt>
+  <wpt lat="38.42537" lon="-7.53445"><name>Reguengos de Monsaraz</name></wpt>
+  <wpt lat="37.91795" lon="-6.72845"><name>Jabugo, España - Jamón Ibérico</name></wpt>
+  <wpt lat="38.01164" lon="-6.52487"><name>Cañaveral de León</name></wpt>
+  <wpt lat="37.38182" lon="-6.06836"><name>Bormujos / Sevilha</name></wpt>
+  <trk>
+    <name>Dia 1 | 1 Out 2026 | Queijas → Évora → Jabugo → Sevilha</name>
+    <trkseg>
+      <trkpt lat="38.71589" lon="-9.26348"/>
+      <trkpt lat="38.71409" lon="-9.26483"/>
+      <trkpt lat="38.7162" lon="-9.22038"/>
+      <trkpt lat="38.73098" lon="-9.20968"/>
+      <trkpt lat="38.75778" lon="-9.20637"/>
+      <trkpt lat="38.78141" lon="-9.18765"/>
+      <trkpt lat="38.7952" lon="-9.16142"/>
+      <trkpt lat="38.79914" lon="-9.12563"/>
+      <trkpt lat="38.78539" lon="-9.08442"/>
+      <trkpt lat="38.72525" lon="-8.97749"/>
+      <trkpt lat="38.7035" lon="-8.94056"/>
+      <trkpt lat="38.70674" lon="-8.92708"/>
+      <trkpt lat="38.71512" lon="-8.85032"/>
+      <trkpt lat="38.68651" lon="-8.66139"/>
+      <trkpt lat="38.67898" lon="-8.56836"/>
+      <trkpt lat="38.6827" lon="-8.47917"/>
+      <trkpt lat="38.67366" lon="-8.44766"/>
+      <trkpt lat="38.64957" lon="-8.36182"/>
+      <trkpt lat="38.65101" lon="-8.29029"/>
+      <trkpt lat="38.64872" lon="-8.24847"/>
+      <trkpt lat="38.64965" lon="-8.22086"/>
+      <trkpt lat="38.64674" lon="-8.15894"/>
+      <trkpt lat="38.61102" lon="-8.06472"/>
+      <trkpt lat="38.59006" lon="-8.0107"/>
+      <trkpt lat="38.56629" lon="-7.94848"/>
+      <trkpt lat="38.55914" lon="-7.92369"/>
+      <trkpt lat="38.55396" lon="-7.9057"/>
+      <trkpt lat="38.55918" lon="-7.89018"/>
+      <trkpt lat="38.5272" lon="-7.80935"/>
+      <trkpt lat="38.48163" lon="-7.72618"/>
+      <trkpt lat="38.45668" lon="-7.64493"/>
+      <trkpt lat="38.42647" lon="-7.54651"/>
+      <trkpt lat="38.42475" lon="-7.52225"/>
+      <trkpt lat="38.4167" lon="-7.41644"/>
+      <trkpt lat="38.40194" lon="-7.34659"/>
+      <trkpt lat="38.38147" lon="-7.33155"/>
+      <trkpt lat="38.33148" lon="-7.28222"/>
+      <trkpt lat="38.22348" lon="-7.22502"/>
+      <trkpt lat="38.19937" lon="-7.1699"/>
+      <trkpt lat="38.16345" lon="-7.12355"/>
+      <trkpt lat="38.13593" lon="-7.03794"/>
+      <trkpt lat="38.12783" lon="-7.00214"/>
+      <trkpt lat="38.12891" lon="-6.99549"/>
+      <trkpt lat="38.13324" lon="-6.98403"/>
+      <trkpt lat="38.13467" lon="-6.97105"/>
+      <trkpt lat="38.13554" lon="-6.94638"/>
+      <trkpt lat="38.13369" lon="-6.92016"/>
+      <trkpt lat="38.13594" lon="-6.89495"/>
+      <trkpt lat="38.13313" lon="-6.87228"/>
+      <trkpt lat="38.12358" lon="-6.8707"/>
+      <trkpt lat="38.0301" lon="-7.037"/>
+      <trkpt lat="37.96186" lon="-6.49959"/>
+      <trkpt lat="37.97863" lon="-6.50022"/>
+      <trkpt lat="37.98835" lon="-6.5143"/>
+      <trkpt lat="38.00061" lon="-6.52124"/>
+      <trkpt lat="38.01121" lon="-6.52154"/>
+      <trkpt lat="38.00379" lon="-6.50609"/>
+      <trkpt lat="38.00301" lon="-6.48581"/>
+      <trkpt lat="38.00668" lon="-6.47583"/>
+      <trkpt lat="38.01028" lon="-6.46489"/>
+      <trkpt lat="38.00958" lon="-6.44881"/>
+      <trkpt lat="38.00935" lon="-6.42965"/>
+      <trkpt lat="38.01242" lon="-6.42404"/>
+      <trkpt lat="38.01669" lon="-6.41834"/>
+      <trkpt lat="38.00732" lon="-6.38661"/>
+      <trkpt lat="38.00366" lon="-6.35939"/>
+      <trkpt lat="37.98621" lon="-6.33644"/>
+      <trkpt lat="37.97134" lon="-6.31489"/>
+      <trkpt lat="37.95951" lon="-6.26705"/>
+      <trkpt lat="37.93329" lon="-6.24239"/>
+      <trkpt lat="37.91773" lon="-6.23612"/>
+      <trkpt lat="37.91499" lon="-6.22544"/>
+      <trkpt lat="37.91319" lon="-6.21746"/>
+      <trkpt lat="37.85697" lon="-6.21814"/>
+      <trkpt lat="37.81038" lon="-6.20402"/>
+      <trkpt lat="37.76876" lon="-6.16856"/>
+      <trkpt lat="37.73784" lon="-6.17304"/>
+      <trkpt lat="37.69868" lon="-6.17936"/>
+      <trkpt lat="37.66424" lon="-6.16869"/>
+      <trkpt lat="37.62026" lon="-6.13002"/>
+      <trkpt lat="37.57146" lon="-6.10608"/>
+      <trkpt lat="37.52565" lon="-6.082"/>
+      <trkpt lat="37.48285" lon="-6.05903"/>
+      <trkpt lat="37.43396" lon="-6.03234"/>
+      <trkpt lat="37.40386" lon="-6.02958"/>
+      <trkpt lat="37.38604" lon="-6.03428"/>
+      <trkpt lat="37.38412" lon="-6.06083"/>
+      <trkpt lat="37.38182" lon="-6.06836"/>
+    </trkseg>
+  </trk>
 </gpx>

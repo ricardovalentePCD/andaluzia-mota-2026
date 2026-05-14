@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Ferias-SUL-ESPANHA-2026" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Dia 3 | 3 Out 2026 | Antequera → Alfarnate → Alpujarras → La Calahorra</name><desc>Dia 3 | 3 Out 2026 | Antequera → Alfarnate → Alpujarras → La Calahorra</desc></metadata>
+  <wpt lat="37.01893" lon="-4.55188"><name>Antequera - Partida</name></wpt>
+  <wpt lat="36.97058" lon="-4.21903"><name>MA-156 Alfarnate</name></wpt>
+  <wpt lat="36.74106" lon="-4.00654"><name>Vélez-Málaga</name></wpt>
+  <wpt lat="36.75101" lon="-3.87765"><name>Nerja</name></wpt>
+  <wpt lat="36.91877" lon="-3.4795"><name>Lanjarón</name></wpt>
+  <wpt lat="36.92793" lon="-3.40278"><name>Ruta das Alpujarras</name></wpt>
+  <wpt lat="36.96214" lon="-3.35883"><name>Capileira</name></wpt>
+  <wpt lat="37.00128" lon="-3.26654"><name>Trevélez</name></wpt>
+  <wpt lat="36.96174" lon="-3.05331"><name>Ugíjar</name></wpt>
+  <wpt lat="37.18496" lon="-3.06516"><name>La Calahorra - Castelo</name></wpt>
+  <trk>
+    <name>Dia 3 | 3 Out 2026 | Antequera → Alfarnate → Alpujarras → La Calahorra</name>
+    <trkseg>
+      <trkpt lat="37.01893" lon="-4.55188"/>
+      <trkpt lat="37.02484" lon="-4.52008"/>
+      <trkpt lat="37.01698" lon="-4.49841"/>
+      <trkpt lat="36.98067" lon="-4.45237"/>
+      <trkpt lat="36.95962" lon="-4.44862"/>
+      <trkpt lat="36.9561" lon="-4.43721"/>
+      <trkpt lat="36.93563" lon="-4.39046"/>
+      <trkpt lat="36.93333" lon="-4.36687"/>
+      <trkpt lat="36.93274" lon="-4.36002"/>
+      <trkpt lat="36.94565" lon="-4.34956"/>
+      <trkpt lat="36.95098" lon="-4.33391"/>
+      <trkpt lat="36.95911" lon="-4.31917"/>
+      <trkpt lat="36.96981" lon="-4.30346"/>
+      <trkpt lat="36.98126" lon="-4.28488"/>
+      <trkpt lat="36.9923" lon="-4.26585"/>
+      <trkpt lat="36.98972" lon="-4.22444"/>
+      <trkpt lat="36.97226" lon="-4.21973"/>
+      <trkpt lat="36.96711" lon="-4.21035"/>
+      <trkpt lat="36.96505" lon="-4.20702"/>
+      <trkpt lat="36.96335" lon="-4.2016"/>
+      <trkpt lat="36.95883" lon="-4.19865"/>
+      <trkpt lat="36.95329" lon="-4.19928"/>
+      <trkpt lat="36.94513" lon="-4.19923"/>
+      <trkpt lat="36.93357" lon="-4.19862"/>
+      <trkpt lat="36.92698" lon="-4.18653"/>
+      <trkpt lat="36.91923" lon="-4.17216"/>
+      <trkpt lat="36.90682" lon="-4.16646"/>
+      <trkpt lat="36.8943" lon="-4.1553"/>
+      <trkpt lat="36.87203" lon="-4.1533"/>
+      <trkpt lat="36.85759" lon="-4.15115"/>
+      <trkpt lat="36.83384" lon="-4.12759"/>
+      <trkpt lat="36.79845" lon="-4.12331"/>
+      <trkpt lat="36.75654" lon="-4.10473"/>
+      <trkpt lat="36.75826" lon="-4.05315"/>
+      <trkpt lat="36.74682" lon="-4.05241"/>
+      <trkpt lat="36.74101" lon="-4.00869"/>
+      <trkpt lat="36.73519" lon="-3.97933"/>
+      <trkpt lat="36.73458" lon="-3.93609"/>
+      <trkpt lat="36.74401" lon="-3.90376"/>
+      <trkpt lat="36.75299" lon="-3.87509"/>
+      <trkpt lat="36.75786" lon="-3.86344"/>
+      <trkpt lat="36.75961" lon="-3.84118"/>
+      <trkpt lat="36.75151" lon="-3.81102"/>
+      <trkpt lat="36.74788" lon="-3.78962"/>
+      <trkpt lat="36.75052" lon="-3.77951"/>
+      <trkpt lat="36.74415" lon="-3.75371"/>
+      <trkpt lat="36.75601" lon="-3.72543"/>
+      <trkpt lat="36.76099" lon="-3.65091"/>
+      <trkpt lat="36.77097" lon="-3.577"/>
+      <trkpt lat="36.7631" lon="-3.56639"/>
+      <trkpt lat="36.78447" lon="-3.54234"/>
+      <trkpt lat="36.81328" lon="-3.5396"/>
+      <trkpt lat="36.84871" lon="-3.50861"/>
+      <trkpt lat="36.85644" lon="-3.49268"/>
+      <trkpt lat="36.86428" lon="-3.48466"/>
+      <trkpt lat="36.87208" lon="-3.47591"/>
+      <trkpt lat="36.97035" lon="-3.19066"/>
+      <trkpt lat="36.97128" lon="-3.18747"/>
+      <trkpt lat="36.96228" lon="-3.17683"/>
+      <trkpt lat="36.9669" lon="-3.16658"/>
+      <trkpt lat="36.97876" lon="-3.15863"/>
+      <trkpt lat="36.98771" lon="-3.14908"/>
+      <trkpt lat="36.97823" lon="-3.14115"/>
+      <trkpt lat="36.97967" lon="-3.12321"/>
+      <trkpt lat="36.99012" lon="-3.11446"/>
+      <trkpt lat="36.99485" lon="-3.10397"/>
+      <trkpt lat="36.99673" lon="-3.08829"/>
+      <trkpt lat="36.99532" lon="-3.07677"/>
+      <trkpt lat="36.99465" lon="-3.06911"/>
+      <trkpt lat="36.99221" lon="-3.06669"/>
+      <trkpt lat="36.96506" lon="-3.05745"/>
+      <trkpt lat="36.95842" lon="-3.05414"/>
+      <trkpt lat="36.94751" lon="-3.05651"/>
+      <trkpt lat="36.96309" lon="-3.01332"/>
+      <trkpt lat="36.97589" lon="-3.01201"/>
+      <trkpt lat="36.98706" lon="-3.01055"/>
+      <trkpt lat="36.99418" lon="-3.00752"/>
+      <trkpt lat="37.00293" lon="-3.00483"/>
+      <trkpt lat="37.01054" lon="-3.00185"/>
+      <trkpt lat="37.00949" lon="-3.01006"/>
+      <trkpt lat="37.01657" lon="-3.00695"/>
+      <trkpt lat="37.0268" lon="-3.00732"/>
+      <trkpt lat="37.04446" lon="-3.0135"/>
+      <trkpt lat="37.07297" lon="-3.01919"/>
+      <trkpt lat="37.08962" lon="-3.02767"/>
+      <trkpt lat="37.10055" lon="-3.02386"/>
+      <trkpt lat="37.12182" lon="-3.03422"/>
+      <trkpt lat="37.13417" lon="-3.04209"/>
+      <trkpt lat="37.15032" lon="-3.0507"/>
+      <trkpt lat="37.16253" lon="-3.05378"/>
+      <trkpt lat="37.16683" lon="-3.04874"/>
+      <trkpt lat="37.17125" lon="-3.04926"/>
+      <trkpt lat="37.18785" lon="-3.06364"/>
+      <trkpt lat="37.18496" lon="-3.06516"/>
+    </trkseg>
+  </trk>
+</gpx>

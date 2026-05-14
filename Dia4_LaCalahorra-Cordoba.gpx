@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Ferias-SUL-ESPANHA-2026" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Dia 4 | 4 Out 2026 | La Calahorra → Velefique → Subbéticas → Córdoba</name><desc>Dia 4 | 4 Out 2026 | La Calahorra → Velefique → Subbéticas → Córdoba</desc></metadata>
+  <wpt lat="37.18496" lon="-3.06516"><name>La Calahorra - Castelo</name></wpt>
+  <wpt lat="37.44929" lon="-3.01973"><name>Gorafe - Parque Megalítico</name></wpt>
+  <wpt lat="37.26207" lon="-2.45662"><name>Bacares</name></wpt>
+  <wpt lat="37.19452" lon="-2.40443"><name>Velefique</name></wpt>
+  <wpt lat="37.22559" lon="-2.4112"><name>Alto Velefique</name></wpt>
+  <wpt lat="37.45313" lon="-4.33701"><name>Sierras Subbéticas</name></wpt>
+  <wpt lat="37.54343" lon="-4.31478"><name>Zuheros</name></wpt>
+  <wpt lat="37.48659" lon="-4.38057"><name>Santuario Nra. Sra. de la Sierra</name></wpt>
+  <wpt lat="37.46452" lon="-3.9241"><name>Alcalá la Real</name></wpt>
+  <wpt lat="37.88929" lon="-4.77928"><name>Córdoba</name></wpt>
+  <trk>
+    <name>Dia 4 | 4 Out 2026 | La Calahorra → Velefique → Subbéticas → Córdoba</name>
+    <trkseg>
+      <trkpt lat="37.18496" lon="-3.06516"/>
+      <trkpt lat="37.186" lon="-3.06408"/>
+      <trkpt lat="37.19888" lon="-3.0683"/>
+      <trkpt lat="37.20956" lon="-3.06692"/>
+      <trkpt lat="37.22264" lon="-3.07091"/>
+      <trkpt lat="37.23139" lon="-3.08131"/>
+      <trkpt lat="37.24404" lon="-3.08161"/>
+      <trkpt lat="37.2492" lon="-3.08424"/>
+      <trkpt lat="37.25479" lon="-3.0906"/>
+      <trkpt lat="37.25598" lon="-3.09288"/>
+      <trkpt lat="37.26135" lon="-3.09029"/>
+      <trkpt lat="37.26874" lon="-3.09464"/>
+      <trkpt lat="37.29176" lon="-3.11163"/>
+      <trkpt lat="37.31456" lon="-3.11211"/>
+      <trkpt lat="37.3195" lon="-3.13889"/>
+      <trkpt lat="37.31823" lon="-3.13923"/>
+      <trkpt lat="37.32295" lon="-3.10994"/>
+      <trkpt lat="37.34882" lon="-3.0897"/>
+      <trkpt lat="37.37714" lon="-3.06075"/>
+      <trkpt lat="37.38939" lon="-3.01371"/>
+      <trkpt lat="37.39147" lon="-2.99871"/>
+      <trkpt lat="37.39796" lon="-2.98984"/>
+      <trkpt lat="37.4368" lon="-3.01384"/>
+      <trkpt lat="37.44707" lon="-3.02006"/>
+      <trkpt lat="37.45144" lon="-3.02418"/>
+      <trkpt lat="37.45305" lon="-3.02517"/>
+      <trkpt lat="37.45802" lon="-3.02913"/>
+      <trkpt lat="37.4639" lon="-3.03335"/>
+      <trkpt lat="37.47104" lon="-3.04081"/>
+      <trkpt lat="37.47892" lon="-3.04237"/>
+      <trkpt lat="37.49399" lon="-3.07177"/>
+      <trkpt lat="37.50192" lon="-3.08603"/>
+      <trkpt lat="37.50511" lon="-3.09132"/>
+      <trkpt lat="37.50879" lon="-3.1075"/>
+      <trkpt lat="37.50498" lon="-3.11474"/>
+      <trkpt lat="37.49844" lon="-3.12058"/>
+      <trkpt lat="37.49277" lon="-3.12551"/>
+      <trkpt lat="37.49093" lon="-3.13622"/>
+      <trkpt lat="37.48457" lon="-3.14106"/>
+      <trkpt lat="37.47324" lon="-3.1462"/>
+      <trkpt lat="37.45956" lon="-3.15883"/>
+      <trkpt lat="37.45632" lon="-3.17045"/>
+      <trkpt lat="37.45405" lon="-3.19876"/>
+      <trkpt lat="37.47403" lon="-3.21441"/>
+      <trkpt lat="37.48294" lon="-3.21974"/>
+      <trkpt lat="37.49284" lon="-3.22249"/>
+      <trkpt lat="37.50336" lon="-3.23313"/>
+      <trkpt lat="37.5092" lon="-3.24829"/>
+      <trkpt lat="37.50941" lon="-3.26255"/>
+      <trkpt lat="37.51396" lon="-3.27399"/>
+      <trkpt lat="37.5109" lon="-3.28464"/>
+      <trkpt lat="37.51002" lon="-3.30058"/>
+      <trkpt lat="37.51122" lon="-3.31028"/>
+      <trkpt lat="37.50968" lon="-3.31947"/>
+      <trkpt lat="37.50948" lon="-3.32628"/>
+      <trkpt lat="37.50767" lon="-3.34316"/>
+      <trkpt lat="37.517" lon="-3.38634"/>
+      <trkpt lat="38.01839" lon="-3.43373"/>
+      <trkpt lat="38.03264" lon="-3.48424"/>
+      <trkpt lat="38.05484" lon="-3.51098"/>
+      <trkpt lat="38.0675" lon="-3.55956"/>
+      <trkpt lat="38.07688" lon="-3.59138"/>
+      <trkpt lat="38.0832" lon="-3.65011"/>
+      <trkpt lat="38.09268" lon="-3.67976"/>
+      <trkpt lat="38.09743" lon="-3.719"/>
+      <trkpt lat="38.10087" lon="-3.74168"/>
+      <trkpt lat="38.1228" lon="-3.76178"/>
+      <trkpt lat="38.12071" lon="-3.76096"/>
+      <trkpt lat="38.10258" lon="-3.79177"/>
+      <trkpt lat="38.0876" lon="-3.82504"/>
+      <trkpt lat="38.07348" lon="-3.85475"/>
+      <trkpt lat="38.05903" lon="-3.8927"/>
+      <trkpt lat="38.04519" lon="-3.93028"/>
+      <trkpt lat="38.04149" lon="-4.00365"/>
+      <trkpt lat="38.03074" lon="-4.06219"/>
+      <trkpt lat="38.035" lon="-4.12872"/>
+      <trkpt lat="38.02131" lon="-4.16943"/>
+      <trkpt lat="38.00594" lon="-4.20973"/>
+      <trkpt lat="37.99081" lon="-4.25724"/>
+      <trkpt lat="37.98795" lon="-4.31052"/>
+      <trkpt lat="38.00677" lon="-4.35289"/>
+      <trkpt lat="38.00735" lon="-4.39712"/>
+      <trkpt lat="37.99093" lon="-4.43657"/>
+      <trkpt lat="37.95855" lon="-4.46389"/>
+      <trkpt lat="37.9514" lon="-4.50293"/>
+      <trkpt lat="37.94976" lon="-4.54009"/>
+      <trkpt lat="37.9383" lon="-4.56412"/>
+      <trkpt lat="37.91498" lon="-4.59392"/>
+      <trkpt lat="37.90584" lon="-4.63577"/>
+      <trkpt lat="37.89238" lon="-4.69126"/>
+      <trkpt lat="37.8947" lon="-4.73322"/>
+      <trkpt lat="37.89432" lon="-4.74588"/>
+      <trkpt lat="37.90528" lon="-4.75914"/>
+      <trkpt lat="37.89189" lon="-4.78075"/>
+      <trkpt lat="37.88929" lon="-4.77928"/>
+    </trkseg>
+  </trk>
+</gpx>
